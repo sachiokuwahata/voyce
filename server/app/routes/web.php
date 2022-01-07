@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RequestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +22,10 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     return view('test');
+});
+
+Route::get('/request', [RequestController::class, 'index'])->name('request.index');
+Route::post('/requestDone', [RequestController::class, 'store'])->name('request.store');
+Route::get('/requestALL', function () {
+    return view('request.requestALL');
 });
