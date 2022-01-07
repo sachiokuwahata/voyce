@@ -40,9 +40,16 @@ class RequestController extends Controller
 
     public function store(Request $request)
     {        
-        $demand = new Demand;
-        $demand->values = $request->input('values');
-        $demand->save();
+
+        $dynamicitems = DynamicItem::all();
+
+            foreach($dynamicitems as $dynamicitem){
+                $id = $dynamicitem->id;
+                $demand = new Demand;
+                $demand->values = $request->input($id);
+                $demand->dynamic_item_id = $id;
+                $demand->save();        
+            }
     
         return redirect('/requestALL');
     }
