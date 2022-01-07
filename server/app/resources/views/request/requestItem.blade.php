@@ -23,20 +23,17 @@
     <body class="">
 
             <div>
-                <form method="POST" action="{{ route('request.store') }}">
+                項目作成
+            </div>
+
+            <div>
+                <form method="POST" action="{{ route('request.requestItemDone') }}">
                 @csrf
                 <label for="name">要望</label>                
-                <input type="text" id="" name="values" >
-
-                @foreach ($dynamicitems as $dynamicitem)
-                    </br>
-                    <label for="name">{{ $dynamicitem->label }}</label>                
-                    <input type="text" id="" name="{{$dynamicitem->id}}" >
-                    </br>
-                @endforeach                
+                <input type="text" id="" name="label">
 
                     <button type="submit" class="btn">
-                        保存する
+                        追加する
                     </button>
                 </form>
             </div>

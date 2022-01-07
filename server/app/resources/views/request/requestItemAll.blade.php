@@ -23,22 +23,15 @@
     <body class="">
 
             <div>
-                <form method="POST" action="{{ route('request.store') }}">
-                @csrf
-                <label for="name">要望</label>                
-                <input type="text" id="" name="values" >
+
+                要望の項目を全て表示!!!!!
 
                 @foreach ($dynamicitems as $dynamicitem)
+                    <p>要望項目名： {{ $dynamicitem->label }}</p>
                     </br>
-                    <label for="name">{{ $dynamicitem->label }}</label>                
-                    <input type="text" id="" name="{{$dynamicitem->id}}" >
-                    </br>
-                @endforeach                
+                @endforeach
 
-                    <button type="submit" class="btn">
-                        保存する
-                    </button>
-                </form>
+
             </div>
 
 
