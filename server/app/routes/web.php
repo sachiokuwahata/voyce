@@ -15,12 +15,13 @@ use App\Http\Controllers\RequestController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
 Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/test', function () {
     return view('test');
 });
 
@@ -29,3 +30,7 @@ Route::post('/requestDone', [RequestController::class, 'store'])->name('request.
 Route::get('/requestALL', function () {
     return view('request.requestALL');
 });
+Route::get('/requestItem', [RequestController::class, 'item'])->name('request.item');
+Route::post('/requestItemDone', [RequestController::class, 'requestItemDone'])->name('request.requestItemDone');
+Route::get('/requestItemAll', [RequestController::class, 'requestItemAll'])->name('request.requestItemAll');
+

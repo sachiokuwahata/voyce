@@ -23,9 +23,15 @@
     <body class="antialiased">
             <div class="h1">
                 h1
+                <a href="{{ route('request.index') }}">
+                    要望作成場所
+                </a>
             </div>
             <div class="h2">
                 h2
+                <a href="{{ route('request.item') }}">
+                    要望項目作成場所
+                </a>
             </div>
             <div class="h3">
                 h3
