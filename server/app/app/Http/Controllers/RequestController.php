@@ -24,10 +24,12 @@ class RequestController extends Controller
 
     public function requestItemDone(Request $request)
     {
-        $dynamicitem = new DynamicItem;
-        $dynamicitem->label =  $request->input('label');
-        $dynamicitem->save();
+        $dynamicitem = DynamicItem::create([
+            'label' => $request->input('label')
+        ]);
+
         return view('request.requestItemAll');
+
     }
 
     public function requestItemAll()
@@ -45,10 +47,10 @@ class RequestController extends Controller
 
             foreach($dynamicitems as $dynamicitem){
                 $id = $dynamicitem->id;
-                $demand = new Demand;
-                $demand->values = $request->input($id);
-                $demand->dynamic_item_id = $id;
-                $demand->save();        
+                Demand::create([
+                    'values' => $request->input($id),
+                    'dynamic_item_id' => $id                    
+                ]);                
             }
     
         return redirect('/requestALL');

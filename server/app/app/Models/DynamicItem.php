@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DynamicItem extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'label',
+    ];
+
 }
