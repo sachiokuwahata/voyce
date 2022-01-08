@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\DemandController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +29,33 @@ Route::get('/', function () {
 
 
 
-Route::prefix('demand')->name('demand.')->group(function (){
+// Route::prefix('demand')->name('demand.')->group(function (){
     
-    Route::get('entry', [RequestController::class, 'entry'])->name('entry');
-    Route::post('entryDone', [RequestController::class, 'entryDone'])->name('entryDone');
+//     Route::get('entry', [RequestController::class, 'entry'])->name('entry');
+//     Route::post('entryDone', [RequestController::class, 'entryDone'])->name('entryDone');
   
-    Route::get('item/entry', [RequestController::class, 'itemEntry'])->name('item.entry');
-    Route::post('item/entryDone', [RequestController::class, 'itemEntryDone'])->name('item.entryDone');
+//     Route::get('item/entry', [RequestController::class, 'itemEntry'])->name('item.entry');
+//     Route::post('item/entryDone', [RequestController::class, 'itemEntryDone'])->name('item.entryDone');
 
-    Route::get('showAll', [RequestController::class, 'showAll'])->name('showAll');
-    Route::get('showItemAll', [RequestController::class, 'showItemAll'])->name('showItemAll');
+//     Route::get('showAll', [RequestController::class, 'showAll'])->name('showAll');
+//     Route::get('showItemAll', [RequestController::class, 'showItemAll'])->name('showItemAll');
     
-});
+// });
+
+
+Route::prefix('demand')->name('demand.')->group(function (){
+  
+    Route::get('entry', [DemandController::class, 'entry'])->name('entry');
+    Route::post('entryDone', [DemandController::class, 'entryDone'])->name('entryDone');
+     Route::get('item/entry', [DemandController::class, 'itemEntry'])->name('item.entry');
+    Route::post('item/entryDone', [DemandController::class, 'itemEntryDone'])->name('item.entryDone');
+  
+    Route::get('showAll', [DemandController::class, 'showAll'])->name('showAll');
+    Route::get('showItemAll', [DemandController::class, 'showItemAll'])->name('showItemAll');
+   
+ });
+ 
+
 
 
 
