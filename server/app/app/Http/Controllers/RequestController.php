@@ -28,8 +28,7 @@ class RequestController extends Controller
             'label' => $request->input('label')
         ]);
 
-        return view('request.requestItemAll');
-
+        return redirect()->route('request.requestItemAll');        
     }
 
     public function requestItemAll()
@@ -53,7 +52,7 @@ class RequestController extends Controller
                 ]);                
             }
     
-        return redirect('/requestALL');
+        return redirect()->route('request.requestALL');
     }
 
 

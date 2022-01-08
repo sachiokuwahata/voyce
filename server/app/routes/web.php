@@ -29,7 +29,7 @@ Route::get('/request', [RequestController::class, 'index'])->name('request.index
 Route::post('/requestDone', [RequestController::class, 'store'])->name('request.store');
 Route::get('/requestALL', function () {
     return view('request.requestALL');
-});
+})->name('request.requestALL');
 Route::get('/requestItem', [RequestController::class, 'item'])->name('request.item');
 Route::post('/requestItemDone', [RequestController::class, 'requestItemDone'])->name('request.requestItemDone');
 Route::get('/requestItemAll', [RequestController::class, 'requestItemAll'])->name('request.requestItemAll');
