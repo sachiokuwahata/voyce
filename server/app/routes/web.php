@@ -20,7 +20,6 @@ use App\Http\Controllers\DemandController;
 // });
 
 
-
 Route::get('/', function () {
     return view('test');
 });
@@ -30,7 +29,8 @@ Route::prefix('demand')->name('demand.')->group(function (){
   
     Route::get('entry', [DemandController::class, 'entry'])->name('entry');
     Route::post('entryDone', [DemandController::class, 'entryDone'])->name('entryDone');
-     Route::get('item/entry', [DemandController::class, 'itemEntry'])->name('item.entry');
+
+    Route::get('item/entry', [DemandController::class, 'itemEntry'])->name('item.entry');
     Route::post('item/entryDone', [DemandController::class, 'itemEntryDone'])->name('item.entryDone');
   
     Route::get('showAll', [DemandController::class, 'showAll'])->name('showAll');
