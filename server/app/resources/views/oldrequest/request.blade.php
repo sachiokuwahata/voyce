@@ -20,25 +20,27 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-            <div class="h1">
-                h1
-                <a href="{{ route('demand.entry') }}">
-                    要望作成場所
-                </a>
+    <body class="">
+
+            <div>
+                <form method="POST" action="{{ route('demand.entryDone') }}">
+                @csrf
+                <label for="name">要望</label>                
+                <input type="text" id="" name="values" >
+
+                @foreach ($dynamicitems as $dynamicitem)
+                    </br>
+                    <label for="name">{{ $dynamicitem->label }}</label>                
+                    <input type="text" id="" name="{{$dynamicitem->id}}" >
+                    </br>
+                @endforeach                
+
+                    <button type="submit" class="btn">
+                        保存する
+                    </button>
+                </form>
             </div>
-            <div class="h2">
-                h2
-                <a href="{{ route('demand.item.entry') }}">
-                    要望項目作成場所
-                </a>
-            </div>
-            <div class="h3">
-                h3
-            </div>
-            <div class="h4">
-                h4
-            </div>
+
 
     </body>
 </html>

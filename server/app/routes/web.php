@@ -25,12 +25,28 @@ Route::get('/', function () {
     return view('test');
 });
 
-Route::get('/request', [RequestController::class, 'index'])->name('request.index');
-Route::post('/requestDone', [RequestController::class, 'store'])->name('request.store');
-Route::get('/requestALL', function () {
-    return view('request.requestALL');
-})->name('request.requestALL');
-Route::get('/requestItem', [RequestController::class, 'item'])->name('request.item');
-Route::post('/requestItemDone', [RequestController::class, 'requestItemDone'])->name('request.requestItemDone');
-Route::get('/requestItemAll', [RequestController::class, 'requestItemAll'])->name('request.requestItemAll');
 
+
+Route::prefix('demand')->name('demand.')->group(function (){
+    
+    Route::get('entry', [RequestController::class, 'entry'])->name('entry');
+    Route::post('entryDone', [RequestController::class, 'entryDone'])->name('entryDone');
+  
+    Route::get('item/entry', [RequestController::class, 'itemEntry'])->name('item.entry');
+    Route::post('item/entryDone', [RequestController::class, 'itemEntryDone'])->name('item.entryDone');
+
+    Route::get('showAll', [RequestController::class, 'showAll'])->name('showAll');
+    Route::get('showItemAll', [RequestController::class, 'showItemAll'])->name('showItemAll');
+    
+});
+
+
+
+// Route::get('/request', [RequestController::class, 'index'])->name('request.index');
+// Route::post('/requestDone', [RequestController::class, 'store'])->name('request.store');
+// Route::get('/requestALL', function () {
+//     return view('request.requestALL');
+// })->name('request.requestALL');
+// Route::get('/requestItem', [RequestController::class, 'item'])->name('request.item');
+// Route::post('/requestItemDone', [RequestController::class, 'requestItemDone'])->name('request.requestItemDone');
+// Route::get('/requestItemAll', [RequestController::class, 'requestItemAll'])->name('request.requestItemAll');

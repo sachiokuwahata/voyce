@@ -27,7 +27,7 @@
             </div>
 
             <div>
-                <form method="POST" action="{{ route('request.requestItemDone') }}">
+                <form method="POST" action="{{ route('demand.item.entryDone') }}">
                 @csrf
                 <label for="name">要望</label>                
                 <input type="text" id="" name="label">

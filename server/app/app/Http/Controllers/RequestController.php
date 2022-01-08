@@ -9,37 +9,42 @@ use App\Models\DynamicItem;
 class RequestController extends Controller
 {
     //
-    public function index()
+    public function entry()
     {
         $dynamicitems = DynamicItem::all();
 
-        return view('request.request', compact('dynamicitems'));
+        return view('demand.entry', compact('dynamicitems'));
     }
 
-    public function item()
+    public function itemEntry()
     {
-        return view('request.requestitem');
+        return view('demand.item_entry');
     }
 
 
-    public function requestItemDone(Request $request)
+    public function itemEntryDone(Request $request)
     {
         $dynamicitem = DynamicItem::create([
             'label' => $request->input('label')
         ]);
 
-        return redirect()->route('request.requestItemAll');        
+        return redirect()->route('demand.showItemAll');        
     }
 
-    public function requestItemAll()
+    public function showItemAll()
     {
         $dynamicitems = DynamicItem::all();
 
-        return view('request.requestItemAll', compact('dynamicitems'));
+        return view('demand.showItemAll', compact('dynamicitems'));
     }
 
 
-    public function store(Request $request)
+    public function showAll()
+    {
+        return view('demand.showAll');
+    }    
+
+    public function entryDone(Request $request)
     {        
 
         $dynamicitems = DynamicItem::all();
@@ -52,7 +57,7 @@ class RequestController extends Controller
                 ]);                
             }
     
-        return redirect()->route('request.requestALL');
+        return redirect()->route('demand.showAll');
     }
 
 
