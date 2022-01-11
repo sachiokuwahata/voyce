@@ -14,7 +14,7 @@ class AddDynamicItemIdColumnToDemandsTable extends Migration
     public function up()
     {
         Schema::table('demands', function (Blueprint $table) {
-            $table->integer('dynamic_item_id')->after('values');
+            $table->integer('dynamic_item_id')->after('values');            
         });
     }
 
@@ -26,7 +26,7 @@ class AddDynamicItemIdColumnToDemandsTable extends Migration
     public function down()
     {
         Schema::table('demands', function (Blueprint $table) {
-            $table->dropColumn('dynamic_item_id');
+            $table->dropColumn('dynamic_item_id');            
         });
     }
 }
