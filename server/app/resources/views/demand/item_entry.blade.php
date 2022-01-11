@@ -54,10 +54,10 @@
                 </div>
 
                 <div>
-                    <label for="name">選択式A</label>                
-                    <input type="text" id="" name="choicesA">
+                    <label for="name">選択式A</label> 
+                    <p>複数選択しは、カンマ区切りで記入して下さい</p>               
+                    <input type="text" id="" name="choices">
                 </div>
-
 
                     <button type="submit" class="btn">
                         追加する

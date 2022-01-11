@@ -18,6 +18,24 @@ class DemandController extends Controller
         return view('demand.entry', compact('dynamicitems'));
     }
 
+    public function entryDone(Request $request)
+    {        
+
+        $dynamicitems = DynamicItem::all();
+
+            foreach($dynamicitems as $dynamicitem){
+                $id = $dynamicitem->id;
+                Demand::create([
+                    'values' => $request->input($id),
+                    'dynamic_item_id' => $id                    
+                ]);                
+            }
+    
+        return redirect()->route('demand.showAll');
+    }
+
+
+
     public function itemEntry()
     {
         return view('demand.item_entry');
@@ -34,13 +52,22 @@ class DemandController extends Controller
             'data_type_id' => $data_type_id,
         ]);
 
-        $new_dynamicitem_id = $dynamicitem->id;
 
         if($data_type_id == 4){
-            DynamicItemChoice::create([
-                'dynamic_item_id' => $new_dynamicitem_id,
-                'choices' => $request->input('choicesA'),
-            ]);    
+
+            // 確認：選択肢の登録処理方法
+            $new_dynamicitem_id = $dynamicitem->id;
+            $choices_str = $request->input('choices');
+
+            $choices = explode(",",$choices_str);
+            foreach ($choices as $choice){
+                DynamicItemChoice::create([
+                    'dynamic_item_id' => $new_dynamicitem_id,
+                    'choices' => $choice,
+                ]);
+            }
+
+
         }
 
 
@@ -60,20 +87,5 @@ class DemandController extends Controller
         return view('demand.showAll');
     }    
 
-    public function entryDone(Request $request)
-    {        
-
-        $dynamicitems = DynamicItem::all();
-
-            foreach($dynamicitems as $dynamicitem){
-                $id = $dynamicitem->id;
-                Demand::create([
-                    'values' => $request->input($id),
-                    'dynamic_item_id' => $id                    
-                ]);                
-            }
-    
-        return redirect()->route('demand.showAll');
-    }
 
 }
