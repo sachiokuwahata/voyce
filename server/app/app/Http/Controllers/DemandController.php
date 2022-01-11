@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Demand;
 use App\Models\DynamicItem;
+use App\Models\DynamicItemChoice;
 
 class DemandController extends Controller
 {
@@ -25,12 +26,23 @@ class DemandController extends Controller
 
     public function itemEntryDone(Request $request)
     {
+        $data_type_id = $request->input('data_type_id');
 
         $dynamicitem = DynamicItem::create([
             'label' => $request->input('label'),
             'required' => $request->boolean('required'),
-            'data_type_id' => $request->input('data_type_id'),
+            'data_type_id' => $data_type_id,
         ]);
+
+        $new_dynamicitem_id = $dynamicitem->id;
+
+        if($data_type_id == 4){
+            DynamicItemChoice::create([
+                'dynamic_item_id' => $new_dynamicitem_id,
+                'choices' => $request->input('choicesA'),
+            ]);    
+        }
+
 
         return redirect()->route('demand.showItemAll');        
     }

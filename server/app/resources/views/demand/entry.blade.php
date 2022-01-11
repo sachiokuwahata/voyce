@@ -40,19 +40,21 @@
                             <label for="name" class="h4">{{ $dynamicitem->label }}</label>                
 
                             @if($dynamicitem->data_type_id == 1)
-                                    <input type="text" id="" name="{{$dynamicitem->id}}" >
-                                @elseif ($dynamicitem->data_type_id == 2)
-                                @elseif ($dynamicitem->data_type_id == 3)
-
-                                @elseif ($dynamicitem->data_type_id == 4)
+                                <input type="text" id="" name="{{$dynamicitem->id}}" >
+                            @elseif ($dynamicitem->data_type_id == 2)
+                                <input type="number" id="" name="{{$dynamicitem->id}}" >
+                            @elseif ($dynamicitem->data_type_id == 3)
+                                <textarea name="{{$dynamicitem->id}}" rows="4" cols="40">記入します。</textarea>
+                            @elseif ($dynamicitem->data_type_id == 4)
                                 <select name ="{{$dynamicitem->id}}" class="form-control">
                                     <option value="aaa" selected>文字入力</option>
                                     <option value="bbb">数字入力</option>
                                     <option value="ccc">文章入力</option>
                                     <option value="ddd">選択式</option>
                             </select>
-                                @else
-                                    <input type="text" id="" name="{{$dynamicitem->id}}" >
+                            @else
+                                <!-- 本来であれば不要 -->
+                                <input type="text" id="" name="{{$dynamicitem->id}}" >
                             @endif                        
                         </div>
                     </div>

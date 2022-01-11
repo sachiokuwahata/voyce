@@ -53,6 +53,12 @@
                     </select>
                 </div>
 
+                <div>
+                    <label for="name">選択式A</label>                
+                    <input type="text" id="" name="choicesA">
+                </div>
+
+
                     <button type="submit" class="btn">
                         追加する
                     </button>
