@@ -11,6 +11,8 @@ class DynamicItem extends Model
 
     protected $fillable = [
         'label',
+        'required',
+        'data_type_id'
     ];
 
 }

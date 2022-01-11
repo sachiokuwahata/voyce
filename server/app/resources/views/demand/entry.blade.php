@@ -29,10 +29,33 @@
                 <input type="text" id="" name="values" >
 
                 @foreach ($dynamicitems as $dynamicitem)
-                    </br>
-                    <label for="name">{{ $dynamicitem->label }}</label>                
-                    <input type="text" id="" name="{{$dynamicitem->id}}" >
-                    </br>
+                    <div>
+                        <div>
+                            <!-- 必須項目の処理をする必要有り -->
+                            @if ($dynamicitem->required) 
+                                この項目は必須項目です。
+                            @endif
+                        </div>
+                        <div>
+                            <label for="name" class="h4">{{ $dynamicitem->label }}</label>                
+
+                            @if($dynamicitem->data_type_id == 1)
+                                    <input type="text" id="" name="{{$dynamicitem->id}}" >
+                                @elseif ($dynamicitem->data_type_id == 2)
+                                @elseif ($dynamicitem->data_type_id == 3)
+
+                                @elseif ($dynamicitem->data_type_id == 4)
+                                <select name ="{{$dynamicitem->id}}" class="form-control">
+                                    <option value="aaa" selected>文字入力</option>
+                                    <option value="bbb">数字入力</option>
+                                    <option value="ccc">文章入力</option>
+                                    <option value="ddd">選択式</option>
+                            </select>
+                                @else
+                                    <input type="text" id="" name="{{$dynamicitem->id}}" >
+                            @endif                        
+                        </div>
+                    </div>
                 @endforeach                
 
                     <button type="submit" class="btn">

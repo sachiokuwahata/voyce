@@ -25,8 +25,11 @@ class DemandController extends Controller
 
     public function itemEntryDone(Request $request)
     {
+
         $dynamicitem = DynamicItem::create([
-            'label' => $request->input('label')
+            'label' => $request->input('label'),
+            'required' => $request->boolean('required'),
+            'data_type_id' => $request->input('data_type_id'),
         ]);
 
         return redirect()->route('demand.showItemAll');        

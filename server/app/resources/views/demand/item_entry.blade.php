@@ -29,8 +29,29 @@
             <div>
                 <form method="POST" action="{{ route('demand.item.entryDone') }}">
                 @csrf
-                <label for="name">要望</label>                
-                <input type="text" id="" name="label">
+                
+                <div>
+                    <label for="name">質問名称</label>                
+                    <input type="text" id="" name="label">
+                </div>
+
+                <div>
+                    <label for="name">必須 / 選択式</label>                
+                    <select name ="required" class="form-control">
+                            <option value="true"  selected>必須項目</option>
+                            <option value="false">任意項目</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="name">質問形式</label>                
+                    <select name ="data_type_id" class="form-control">
+                            <option value="1" selected>文字入力</option>
+                            <option value="2">数字入力</option>
+                            <option value="3">文章入力</option>
+                            <option value="4">選択式</option>
+                    </select>
+                </div>
 
                     <button type="submit" class="btn">
                         追加する
