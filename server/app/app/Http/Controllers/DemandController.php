@@ -19,18 +19,27 @@ class DemandController extends Controller
     }
 
     public function entryDone(Request $request)
-    {        
+    {
 
         $dynamicitems = DynamicItem::all();
 
-            foreach($dynamicitems as $dynamicitem){
+            foreach($dynamicitems as $key => $dynamicitem){
                 $id = $dynamicitem->id;
-                Demand::create([
+                $demand = Demand::create([
                     'values' => $request->input($id),
-                    'dynamic_item_id' => $id                    
-                ]);                
+                    'dynamic_item_id' => $id,
+                    'demand_group_id' => $id, // 下記で上書き修正
+                ]);
+
+                $demand_id = $demand->id;
+                $demand_group_id = $demand_id - $key;
+
+                Demand::where('id', $demand_id)
+                ->update(['demand_group_id' => $demand_group_id]);
+
             }
-    
+
+
         return redirect()->route('demand.showAll');
     }
 
@@ -71,7 +80,7 @@ class DemandController extends Controller
         }
 
 
-        return redirect()->route('demand.showItemAll');        
+        return redirect()->route('demand.showItemAll');
     }
 
     public function showItemAll()
@@ -85,7 +94,7 @@ class DemandController extends Controller
     public function showAll()
     {
         return view('demand.showAll');
-    }    
+    }
 
 
 }
