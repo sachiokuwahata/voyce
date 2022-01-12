@@ -11,7 +11,8 @@ class Demand extends Model
 
     protected $fillable = [
         'values',
-        'dynamic_item_id'
+        'dynamic_item_id',
+        'demand_group_id'
     ];
 
 }
