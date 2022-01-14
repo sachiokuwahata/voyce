@@ -9,6 +9,8 @@ use App\Models\DemandDetail;
 use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
 
+use Illuminate\Support\Facades\DB;
+
 class DemandController extends Controller
 {
     //
@@ -23,18 +25,29 @@ class DemandController extends Controller
     public function entryDone(Request $request)
     {
 
-            $demand = Demand::create();
+            DB::transaction(function () use ($request) {
+    
+                $demand = Demand::create();
 
-            $dynamicitems = DynamicItem::all();
-
-            foreach($dynamicitems as $dynamicitem){
-                $id = $dynamicitem->id;
-                $demand_details = DemandDetail::create([
-                    'values' => $request->input($id),
-                    'dynamic_item_id' => $id,
-                    'demand_group_id' => $demand->id
-                ]);
-            }
+                $dynamicitems = DynamicItem::all();
+    
+                foreach($dynamicitems as $dynamicitem){
+    
+                    // ここに$requesteのバリデーションって、$dynamicitemごとにバリデーションされるのか??
+                    // $request->validate([
+                    //     'values' => 'required',
+                    //     'dynamic_item_id' => 'integer | between:0,150',
+                    //     'demand_group_id' => 'integer | between:0,150'
+                    // ]);
+    
+                    $id = $dynamicitem->id;
+                    $demand_details = DemandDetail::create([
+                        'values' => $request->input($id),
+                        'dynamic_item_id' => $id,
+                        'demand_group_id' => $demand->id
+                    ]);
+                }
+            });
 
         return redirect()->route('demand.showAll');
     }
