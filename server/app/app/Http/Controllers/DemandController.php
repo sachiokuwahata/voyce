@@ -32,20 +32,28 @@ class DemandController extends Controller
                 $dynamicitems = DynamicItem::all();
     
                 foreach($dynamicitems as $dynamicitem){
-    
-                    // ここに$requesteのバリデーションって、$dynamicitemごとにバリデーションされるのか??
-                    // $request->validate([
-                    //     'values' => 'required',
-                    //     'dynamic_item_id' => 'integer | between:0,150',
-                    //     'demand_group_id' => 'integer | between:0,150'
-                    // ]);
-    
+
                     $id = $dynamicitem->id;
-                    $demand_details = DemandDetail::create([
-                        'values' => $request->input($id),
-                        'dynamic_item_id' => $id,
-                        'demand_group_id' => $demand->id
-                    ]);
+                    $values = $request->input($id);
+
+                    if ($values) {
+                        $demand_details = DemandDetail::create([
+                            'values' => $request->input($id),
+                            'dynamic_item_id' => $id,
+                            'demand_group_id' => $demand->id
+                        ]);
+                    } elseif($values == null && $dynamicitem->required == 1) {
+                        // input空白 && 必須項目
+                        dd($dynamicitem->label);
+                        $request->validate([
+                            'values' => 'required',
+                            // 'dynamic_item_id' => 'required | integer | between:0,150',
+                            // 'demand_group_id' => 'required | integer | between:0,150'
+                        ]);
+                    } else {
+                        // input空白 && 任意項目
+                    }
+
                 }
             });
 
