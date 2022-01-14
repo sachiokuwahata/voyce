@@ -50,7 +50,7 @@ class DemandController extends Controller
                             // 'demand_group_id' => 'required | integer | between:0,150'
                         ]);
                     } else {
-                        // input空白 && 任意項目
+                        // input空白 && 任意項目 -> 処理しない
                     }
 
                 }
