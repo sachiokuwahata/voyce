@@ -44,7 +44,6 @@ class DemandController extends Controller
                         ]);
                     } elseif($values == null && $dynamicitem->required == 1) {
                         // input空白 && 必須項目
-                        dd($dynamicitem->label);
                         $request->validate([
                             'values' => 'required',
                             // 'dynamic_item_id' => 'required | integer | between:0,150',
