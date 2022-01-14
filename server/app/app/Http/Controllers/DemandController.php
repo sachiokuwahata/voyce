@@ -27,7 +27,7 @@ class DemandController extends Controller
 
             $dynamicitems = DynamicItem::all();
 
-            foreach($dynamicitems as $key => $dynamicitem){
+            foreach($dynamicitems as $dynamicitem){
                 $id = $dynamicitem->id;
                 $demand_details = DemandDetail::create([
                     'values' => $request->input($id),
