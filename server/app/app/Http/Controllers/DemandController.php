@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Demand;
+use App\Models\DemandDetail;
+
 use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
 
@@ -21,24 +23,18 @@ class DemandController extends Controller
     public function entryDone(Request $request)
     {
 
-        $dynamicitems = DynamicItem::all();
+            $demand = Demand::create();
+
+            $dynamicitems = DynamicItem::all();
 
             foreach($dynamicitems as $key => $dynamicitem){
                 $id = $dynamicitem->id;
-                $demand = Demand::create([
+                $demand_details = DemandDetail::create([
                     'values' => $request->input($id),
                     'dynamic_item_id' => $id,
-                    'demand_group_id' => $id, // 下記で上書き修正
+                    'demand_group_id' => $demand->id
                 ]);
-
-                $demand_id = $demand->id;
-                $demand_group_id = $demand_id - $key;
-
-                Demand::where('id', $demand_id)
-                ->update(['demand_group_id' => $demand_group_id]);
-
             }
-
 
         return redirect()->route('demand.showAll');
     }
