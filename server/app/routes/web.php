@@ -24,8 +24,11 @@ Route::get('/', function () {
     return view('test');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::prefix('demand')->name('demand.')->group(function (){
+Route::prefix('demand')->name('demand.')->middleware('auth')->group(function (){
   
     Route::get('entry', [DemandController::class, 'entry'])->name('entry');
     Route::post('entryDone', [DemandController::class, 'entryDone'])->name('entryDone');
@@ -37,14 +40,5 @@ Route::prefix('demand')->name('demand.')->group(function (){
     Route::get('showItemAll', [DemandController::class, 'showItemAll'])->name('showItemAll');
    
  });
- 
 
-
-// Route::get('/request', [RequestController::class, 'index'])->name('request.index');
-// Route::post('/requestDone', [RequestController::class, 'store'])->name('request.store');
-// Route::get('/requestALL', function () {
-//     return view('request.requestALL');
-// })->name('request.requestALL');
-// Route::get('/requestItem', [RequestController::class, 'item'])->name('request.item');
-// Route::post('/requestItemDone', [RequestController::class, 'requestItemDone'])->name('request.requestItemDone');
-// Route::get('/requestItemAll', [RequestController::class, 'requestItemAll'])->name('request.requestItemAll');
+require __DIR__.'/auth.php';

@@ -1,5 +1,4 @@
 
-
 @extends('testlayout.app')
 
 @section('content')
