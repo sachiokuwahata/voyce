@@ -22,7 +22,7 @@ use App\Http\Controllers\DemandController;
 
 Route::get('/', function () {
     return view('test');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

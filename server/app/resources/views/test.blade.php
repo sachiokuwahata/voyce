@@ -1,5 +1,5 @@
 
-@extends('testlayout.app')
+@extends('testlayout.guest')
 
 @section('content')
     <p>このページはインデックスページです。</p>
