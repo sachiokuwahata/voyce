@@ -10,6 +10,7 @@ use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DemandController extends Controller
 {
@@ -24,10 +25,13 @@ class DemandController extends Controller
 
     public function entryDone(Request $request)
     {
+        $user = Auth::user();
 
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, $user) {
     
-                $demand = Demand::create();
+                $demand = Demand::create([
+                    'user_id' => $user->id,                            
+                ]);
 
                 $dynamicitems = DynamicItem::all();
     
@@ -40,8 +44,9 @@ class DemandController extends Controller
                         $demand_details = DemandDetail::create([
                             'values' => $request->input($id),
                             'dynamic_item_id' => $id,
-                            'demand_group_id' => $demand->id
+                            'demand_group_id' => $demand->id,
                         ]);
+
                     } elseif($values == null && $dynamicitem->required == 1) {
                         // input空白 && 必須項目
                         $request->validate([
