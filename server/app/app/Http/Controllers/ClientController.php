@@ -45,11 +45,6 @@ class ClientController extends Controller
                     $values = $request->input($id);
 
                     if ($values) {
-                        // $demand_details = DemandDetail::create([
-                        //     'values' => $request->input($id),
-                        //     'dynamic_item_id' => $id,
-                        //     'demand_group_id' => $demand->id,
-                        // ]);
                         $client_details = ClientDetail::create([
                             'client_group_id' => $client->id,
                             'company_id' => $user->company_id,
