@@ -9,6 +9,7 @@ use App\Models\DemandDetail;
 use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
 use App\Models\Client;
+use App\Models\CompanyDynamicItem;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,22 @@ class DemandController extends Controller
     public function entry()
     {
         $user = Auth::user();
-        $myClients = Client::where('company_id', $user->company_id)->get();
-        $dynamicitems = DynamicItem::where('company_id', $user->company_id)->get();
+        $company_id = $user->company_id;
+        
+        $myClients = Client::where('company_id', $company_id)->get();
+        $myCompanyDynamicItems = CompanyDynamicItem::where('company_id', $company_id)->get();
+
+        $where = [
+            ['company_id', '=', $company_id],
+        ];
+
+        // 動的項目から企業に関係する動的項目を除外
+        $whereNot = [];
+        foreach($myCompanyDynamicItems as $myCompanyDynamicItem){
+            array_push($whereNot, [ 'id', '<>', $myCompanyDynamicItem->dynamicitem->id]);       
+        } ;
+
+        $dynamicitems = DynamicItem::where($where)->where($whereNot)->get();
 
         return view('demand.entry', compact('dynamicitems', 'myClients'));
     }
