@@ -35,12 +35,13 @@ class ClientController extends Controller
                     'company_id' => $user->company_id,
                 ]);
 
-
                 $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
 
                 foreach($CompanyDynamicItems as $CompanyDynamicItem){
                     
-                    $id = $CompanyDynamicItem->dynamicitem->id;
+                    $companydynamicitem = $CompanyDynamicItem->dynamicitem;
+
+                    $id = $companydynamicitem->id;
                     $values = $request->input($id);
 
                     if ($values) {
@@ -56,7 +57,7 @@ class ClientController extends Controller
                             'values' => $request->input($id),
                         ]);        
 
-                    } elseif($values == null && $CompanyDynamicItem->dynamicitem->required == 1) {
+                    } elseif($values == null && $companydynamicitem->required == 1) {
                         // input空白 && 必須項目
                         $request->validate([
                             'values' => 'required',
