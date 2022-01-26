@@ -18,8 +18,10 @@ class ClientController extends Controller
 
     public function entry()
     {
+        $user = Auth::user();
+        $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
 
-        return view('client.entry');
+        return view('client.entry', compact('CompanyDynamicItems'));
     }
 
 
@@ -33,12 +35,40 @@ class ClientController extends Controller
                     'company_id' => $user->company_id,
                 ]);
 
-                $client_details = ClientDetail::create([
-                    'client_group_id' => $client->id,
-                    'company_id' => $user->company_id,
-                    'dynamic_item_id' => $user->id, //不完全
-                    'values' => $request->value,  //不完全
-                ]);
+
+                $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
+
+                foreach($CompanyDynamicItems as $CompanyDynamicItem){
+                    
+                    $id = $CompanyDynamicItem->dynamicitem->id;
+                    $values = $request->input($id);
+
+                    if ($values) {
+                        // $demand_details = DemandDetail::create([
+                        //     'values' => $request->input($id),
+                        //     'dynamic_item_id' => $id,
+                        //     'demand_group_id' => $demand->id,
+                        // ]);
+                        $client_details = ClientDetail::create([
+                            'client_group_id' => $client->id,
+                            'company_id' => $user->company_id,
+                            'dynamic_item_id' => $id,
+                            'values' => $request->input($id),
+                        ]);        
+
+                    } elseif($values == null && $CompanyDynamicItem->dynamicitem->required == 1) {
+                        // input空白 && 必須項目
+                        $request->validate([
+                            'values' => 'required',
+                            // 'dynamic_item_id' => 'required | integer | between:0,150',
+                            // 'demand_group_id' => 'required | integer | between:0,150'
+                        ]);
+                    } else {
+                        // input空白 && 任意項目 -> 処理しない
+                    }
+
+                }
+
 
             });
 
