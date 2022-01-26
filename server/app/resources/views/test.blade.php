@@ -24,6 +24,9 @@
             </div>
             <div class="h4">
                 h4
+                <a href="{{ route('client.entry') }}">
+                    クライアント作成
+                </a>
             </div>
 
 @endsection

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemandController;
+use App\Http\Controllers\ClientController;
 
 
 /*
@@ -40,5 +41,14 @@ Route::prefix('demand')->name('demand.')->middleware('auth')->group(function (){
     Route::get('showItemAll', [DemandController::class, 'showItemAll'])->name('showItemAll');
    
  });
+
+ Route::prefix('client')->name('client.')->middleware('auth')->group(function (){
+
+    Route::get('entry', [ClientController::class, 'entry'])->name('entry');
+    Route::post('entryDone', [ClientController::class, 'entryDone'])->name('entryDone');
+   
+ });
+
+
 
 require __DIR__.'/auth.php';

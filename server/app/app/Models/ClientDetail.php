@@ -10,7 +10,7 @@ class ClientDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'client_id',
+        'client_group_id',
         'company_id',
         'dynamic_item_id',
         'values',     
