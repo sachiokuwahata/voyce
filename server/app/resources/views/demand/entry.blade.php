@@ -6,6 +6,14 @@
                 <form method="POST" action="{{ route('demand.entryDone') }}">
                 @csrf
 
+                <label for="name" class="h4">企業</label>
+                <select name ="client_id" class="form-control">
+                        @foreach ($myClients as $myClient)
+                            <option value="{{$myClient->id}}" selected>{{$myClient->id}}</option>
+                        @endforeach
+                </select>
+
+
                 @foreach ($dynamicitems as $dynamicitem)
                     <div>
                         <div>

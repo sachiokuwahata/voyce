@@ -8,6 +8,7 @@ use App\Models\DemandDetail;
 
 use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
+use App\Models\Client;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,12 @@ class DemandController extends Controller
 
     public function entry()
     {
+        $user = Auth::user();
+        $myClients = Client::where('company_id', $user->company_id)->get();
+
         $dynamicitems = DynamicItem::all();
 
-        return view('demand.entry', compact('dynamicitems'));
+        return view('demand.entry', compact('dynamicitems', 'myClients'));
     }
 
     public function entryDone(Request $request)
@@ -30,7 +34,9 @@ class DemandController extends Controller
             DB::transaction(function () use ($request, $user) {
     
                 $demand = Demand::create([
-                    'user_id' => $user->id,                            
+                    'user_id' => $user->id,
+                    'company_id' => $user->company_id,
+                    'client_id'=> $request->client_id,
                 ]);
 
                 $dynamicitems = DynamicItem::all();
