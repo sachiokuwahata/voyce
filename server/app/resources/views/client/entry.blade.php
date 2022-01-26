@@ -6,7 +6,7 @@
                 <form method="POST" action="{{ route('client.entryDone') }}">
                 @csrf
 
-                <input type="text" id="" name="" >
+                <input type="text" id="" name="value">
 
 
                     <button type="submit" class="btn">
