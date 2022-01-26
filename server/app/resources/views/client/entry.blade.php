@@ -9,7 +9,7 @@
                 @foreach ($CompanyDynamicItems as $CompanyDynamicItem)
                     <div>
                         <div>
-                            <label for="name" class="h4">{{ $CompanyDynamicItem->dynamicitem->label }}</label>
+                        <label for="name" class="h4">{{ $CompanyDynamicItem->dynamicitem->label }}</label>
 
                             @if($CompanyDynamicItem->dynamicitem->data_type_id == 1)
                                 <input type="text" id="" name="{{$CompanyDynamicItem->dynamicitem->id}}" >
@@ -20,7 +20,7 @@
                             @elseif ($CompanyDynamicItem->dynamicitem->data_type_id == 4)
 
                                 <select name ="{{$CompanyDynamicItem->dynamicitem->id}}" class="form-control">
-                                    @foreach ($CompanyDynamicItem->ynamicitem->choices as $choice)
+                                    @foreach ($CompanyDynamicItem->dynamicitem->choices as $choice)
                                         <option value="{{$choice->choices}}" selected>{{$choice->choices}}</option>
                                     @endforeach
                                 </select>

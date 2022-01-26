@@ -8,6 +8,7 @@ use App\Models\ClientDetail;
 use App\Models\Client;
 use App\Models\DynamicItem;
 use App\Models\CompanyDynamicItem;
+use App\Models\DynamicItemChoice;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
