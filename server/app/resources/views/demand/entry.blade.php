@@ -9,10 +9,9 @@
                 <label for="name" class="h4">企業</label>
                 <select name ="client_id" class="form-control">
                         @foreach ($myClients as $myClient)
-                            <option value="{{$myClient->id}}" selected>{{$myClient->id}}</option>
+                            <option value="{{$myClient->id}}" selected>idが{{$myClient->id}}企業</option>
                         @endforeach
                 </select>
-
 
                 @foreach ($dynamicitems as $dynamicitem)
                     <div>
