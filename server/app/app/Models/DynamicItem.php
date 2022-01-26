@@ -13,7 +13,8 @@ class DynamicItem extends Model
     protected $fillable = [
         'label',
         'required',
-        'data_type_id'
+        'data_type_id',
+        'company_id',
     ];
 
     public function choices()

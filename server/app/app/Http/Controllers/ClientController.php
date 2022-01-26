@@ -92,6 +92,7 @@ class ClientController extends Controller
                 'label' => $request->input('label'),
                 'required' => $request->boolean('required'),
                 'data_type_id' => $data_type_id,
+                'company_id' => $user->company_id,
             ]);
 
             CompanyDynamicItem::create([

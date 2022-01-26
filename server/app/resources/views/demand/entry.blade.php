@@ -9,7 +9,7 @@
                 <label for="name" class="h4">企業</label>
                 <select name ="client_id" class="form-control">
                         @foreach ($myClients as $myClient)
-                            <option value="{{$myClient->id}}" selected>idが{{$myClient->id}}企業</option>
+                            <option value="{{$myClient->id}}" selected>idが{{$myClient->id}}企業</option><!-- 本来であれば企業名を反映 -->                            
                         @endforeach
                 </select>
 

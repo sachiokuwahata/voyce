@@ -80,8 +80,9 @@ class DemandController extends Controller
 
     public function itemEntryDone(Request $request)
     {
+        $user = Auth::user();
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, $user) {
 
             $data_type_id = $request->input('data_type_id');
 
@@ -89,6 +90,7 @@ class DemandController extends Controller
                 'label' => $request->input('label'),
                 'required' => $request->boolean('required'),
                 'data_type_id' => $data_type_id,
+                'company_id' => $user->company_id,                
             ]);
     
             if($data_type_id == 4){
