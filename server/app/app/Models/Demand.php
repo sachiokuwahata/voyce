@@ -13,6 +13,8 @@ class Demand extends Model
 
     protected $fillable = [
         'user_id',
+        'company_id',
+        'client_id',
     ];
 
     public function demand_details()
