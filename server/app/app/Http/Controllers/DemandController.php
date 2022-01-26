@@ -114,7 +114,12 @@ class DemandController extends Controller
 
     public function showAll()
     {
-        return view('demand.showAll');
+
+        $demands = Demand::all();
+        // $demand_details = DemandDetail::all();
+        // dd($demands->demand_details());
+
+        return view('demand.showAll', compact('demands'));
     }
 
 

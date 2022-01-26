@@ -18,6 +18,9 @@
             </div>
             <div class="h3">
                 h3
+                <a href="{{ route('demand.showAll') }}">
+                    要望一覧
+                </a>
             </div>
             <div class="h4">
                 h4
