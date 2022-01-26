@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'company_id' => str_pad(rand(0,99999999),8,0, STR_PAD_LEFT), //ひとまず、randomで設定
         ]);
 
         event(new Registered($user));
