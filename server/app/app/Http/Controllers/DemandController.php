@@ -21,8 +21,7 @@ class DemandController extends Controller
     {
         $user = Auth::user();
         $myClients = Client::where('company_id', $user->company_id)->get();
-
-        $dynamicitems = DynamicItem::all();
+        $dynamicitems = DynamicItem::where('company_id', $user->company_id)->get();
 
         return view('demand.entry', compact('dynamicitems', 'myClients'));
     }
@@ -39,7 +38,7 @@ class DemandController extends Controller
                     'client_id'=> $request->client_id,
                 ]);
 
-                $dynamicitems = DynamicItem::all();
+                $dynamicitems = DynamicItem::where('company_id', $user->company_id)->get();
     
                 foreach($dynamicitems as $dynamicitem){
 
