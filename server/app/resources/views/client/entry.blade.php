@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div>
+            <div>
                 <form method="POST" action="{{ route('client.entryDone') }}">
                 @csrf
 
