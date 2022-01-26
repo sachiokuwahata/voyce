@@ -46,7 +46,10 @@ Route::prefix('demand')->name('demand.')->middleware('auth')->group(function (){
 
     Route::get('entry', [ClientController::class, 'entry'])->name('entry');
     Route::post('entryDone', [ClientController::class, 'entryDone'])->name('entryDone');
-   
+
+    Route::get('item/entry', [ClientController::class, 'itemEntry'])->name('item.entry');
+    Route::post('item/entryDone', [ClientController::class, 'itemEntryDone'])->name('item.entryDone');
+
  });
 
 

@@ -29,4 +29,11 @@
                 </a>
             </div>
 
+            <div class="h4">
+                h4
+                <a href="{{ route('client.item.entry') }}">
+                    クライアント_項目の作成
+                </a>
+            </div>
+
 @endsection
