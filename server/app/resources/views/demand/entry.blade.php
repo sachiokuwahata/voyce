@@ -19,14 +19,14 @@
                             <label for="name" class="h4">{{ $dynamicitem->label }}</label>
 
                             @if($dynamicitem->data_type_id == 1)
-                                <input type="text" id="" name="{{$dynamicitem->id}}" >
+                                <input type="text" id="" name="values_{{$dynamicitem->id}}" >
                             @elseif ($dynamicitem->data_type_id == 2)
-                                <input type="number" id="" name="{{$dynamicitem->id}}" >
+                                <input type="number" id="" name="values_{{$dynamicitem->id}}" >
                             @elseif ($dynamicitem->data_type_id == 3)
-                                <textarea name="{{$dynamicitem->id}}" rows="4" cols="40">記入します。</textarea>
+                                <textarea name="values_{{$dynamicitem->id}}" rows="4" cols="40">記入します。</textarea>
                             @elseif ($dynamicitem->data_type_id == 4)
 
-                                <select name ="{{$dynamicitem->id}}" class="form-control">
+                                <select name ="values_{{$dynamicitem->id}}" class="form-control">
                                     @foreach ($dynamicitem->choices as $choice)
                                         <option value="{{$choice->choices}}" selected>{{$choice->choices}}</option>
                                     @endforeach
@@ -34,7 +34,7 @@
 
                             @else
                                 <!-- 本来であれば不要 -->
-                                <input type="text" id="" name="{{$dynamicitem->id}}" >
+                                <input type="text" id="" name="values_{{$dynamicitem->id}}" >
                             @endif
                         </div>
 
