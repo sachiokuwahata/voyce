@@ -23,7 +23,15 @@
     <body class="">
 
             <div>
-                requestALL
+                @foreach ($demands as $demand)
+                <li>{{$demand->id}}</li>                    
+                    @foreach ($demand->demand_details as $demand_detail)
+                    <ul>
+                        <li>データ項目_dynamic_item_label:::{{$demand_detail->dynamic_item_label->label}}</li>
+                        <li>データ内容_values::::{{$demand_detail->values}}</li>
+                    </ul>
+                    @endforeach            
+                @endforeach            
             </div>
 
 

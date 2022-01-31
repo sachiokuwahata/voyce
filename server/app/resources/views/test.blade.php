@@ -1,6 +1,5 @@
 
-
-@extends('testlayout.app')
+@extends('testlayout.guest')
 
 @section('content')
     <p>このページはインデックスページです。</p>
@@ -19,9 +18,22 @@
             </div>
             <div class="h3">
                 h3
+                <a href="{{ route('demand.showAll') }}">
+                    要望一覧
+                </a>
             </div>
             <div class="h4">
                 h4
+                <a href="{{ route('client.entry') }}">
+                    クライアント作成
+                </a>
+            </div>
+
+            <div class="h4">
+                h4
+                <a href="{{ route('client.item.entry') }}">
+                    クライアント_項目の作成
+                </a>
             </div>
 
 @endsection
