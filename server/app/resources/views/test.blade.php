@@ -4,6 +4,31 @@
 @section('content')
     <p>このページはインデックスページです。</p>
 
+            @php
+            $aaa = [
+                    'aaaa' => 1,
+                    'bbbb' => 2,
+                    'cccc' => 3,
+                    'dddd' => 4,
+            ];
+            @endphp
+
+
+            <div id="wdr-component">The pivot table control will appear here</div>
+            <script>
+                var hoge = @json($aaa);
+
+                var pivot = $("#wdr-component").webdatarocks({
+                    toolbar: true,
+                    report: {
+                        dataSource: {
+                            filename: "https://cdn.webdatarocks.com/data/data.csv"
+                        }
+                    }
+                    // report: "https://cdn.webdatarocks.com/reports/report.json"
+               });
+            </script>
+
             <div class="h1">
                 h1
                 <a href="{{ route('demand.entry') }}">
