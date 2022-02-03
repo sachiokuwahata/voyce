@@ -6,6 +6,9 @@
                 <form method="POST" action="{{ route('client.entryDone') }}">
                 @csrf
 
+                <label for="name" class="h4">企業名</label>
+                <input type="text" id="" name="client_name">
+
                 @foreach ($CompanyDynamicItems as $CompanyDynamicItem)
                     <div>
                         <div>

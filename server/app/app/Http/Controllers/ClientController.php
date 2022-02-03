@@ -34,6 +34,7 @@ class ClientController extends Controller
     
                 $client = Client::create([
                     'company_id' => $user->company_id,
+                    'client_name' => $request->input('client_name'),
                 ]);
 
                 $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
