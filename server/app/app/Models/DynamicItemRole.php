@@ -13,5 +13,10 @@ class DynamicItemRole extends Model
         'dynamic_item_id',
         'dynamic_item_type'
     ];
-    
+ 
+    public function dynamicitem()
+    {
+        return $this->hasOne(DynamicItem::class, 'id', 'dynamic_item_id');
+    }    
+
 }

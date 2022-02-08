@@ -12,8 +12,47 @@
                             <option value="{{$myClient->id}}" selected>idが{{$myClient->id}}企業</option><!-- 本来であれば企業名を反映 -->                            
                         @endforeach
                 </select>
+                
+                @foreach ($demanditems as $demanditem)
+                    <div>
+                        <div>
+                            <label for="name" class="h4">{{ $demanditem->dynamicitem->label }}</label>
 
-                @foreach ($dynamicitems as $dynamicitem)
+                            @if($demanditem->dynamicitem->data_type_id == 1)
+                                <input type="text" id="" name="values_{{$demanditem->dynamicitem->id}}" >
+                            @elseif ($demanditem->dynamicitem->data_type_id == 2)
+                                <input type="number" id="" name="values_{{$demanditem->dynamicitem->id}}" >
+                            @elseif ($demanditem->dynamicitem->data_type_id == 3)
+                                <textarea name="values_{{$demanditem->dynamicitem->id}}" rows="4" cols="40">記入します。</textarea>
+                            @elseif ($demanditem->dynamicitem->data_type_id == 4)
+
+                                <select name ="values_{{$demanditem->dynamicitem->id}}" class="form-control">
+                                    @foreach ($demanditem->dynamicitem->choices as $choice)
+                                        <option value="{{$choice->choices}}" selected>{{$choice->choices}}</option>
+                                    @endforeach
+                                </select>
+
+                            @else
+                                <!-- 本来であれば不要 -->
+                                <input type="text" id="" name="values_{{$demanditem->dynamicitem->id}}" >
+                            @endif
+                        </div>
+
+                        <div>
+                            <!-- 必須項目の処理をする必要有り -->
+                            @if ($demanditem->dynamicitem->required)
+                               <div class="small">
+                                   ※入力必須の項目
+                               </div> 
+                            @endif
+                        </div>
+
+                    </div>
+                @endforeach
+
+                
+                <!-- コメントアウト中 -->
+                {{-- @foreach ($dynamicitems as $dynamicitem)
                     <div>
                         <div>
                             <label for="name" class="h4">{{ $dynamicitem->label }}</label>
@@ -33,13 +72,11 @@
                                 </select>
 
                             @else
-                                <!-- 本来であれば不要 -->
                                 <input type="text" id="" name="values_{{$dynamicitem->id}}" >
                             @endif
                         </div>
 
                         <div>
-                            <!-- 必須項目の処理をする必要有り -->
                             @if ($dynamicitem->required)
                                <div class="small">
                                    ※入力必須の項目
@@ -48,7 +85,7 @@
                         </div>
 
                     </div>
-                @endforeach
+                @endforeach --}}
 
                     <button type="submit" class="btn">
                         保存する
