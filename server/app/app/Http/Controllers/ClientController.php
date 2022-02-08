@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\ClientDetail;
 use App\Models\Client;
 use App\Models\DynamicItem;
-use App\Models\CompanyDynamicItem;
 use App\Models\DynamicItemChoice;
 use App\Models\DynamicItemRole;
 

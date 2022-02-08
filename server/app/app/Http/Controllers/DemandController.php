@@ -9,7 +9,6 @@ use App\Models\DemandDetail;
 use App\Models\DynamicItem;
 use App\Models\DynamicItemChoice;
 use App\Models\Client;
-use App\Models\CompanyDynamicItem;
 use App\Models\DynamicItemRole;
 
 use Illuminate\Support\Facades\DB;
