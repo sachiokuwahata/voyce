@@ -25,8 +25,8 @@ class DemandController extends Controller
         $company_id = $user->company_id;
         
         $myClients = Client::where('company_id', $company_id)->get();
-        $myCompanyDynamicItems = CompanyDynamicItem::where('company_id', $company_id)->get();
 
+        // $myCompanyDynamicItems = CompanyDynamicItem::where('company_id', $company_id)->get();
         // $where = [
         //     ['company_id', '=', $company_id],
         // ];
