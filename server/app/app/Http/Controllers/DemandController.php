@@ -46,7 +46,6 @@ class DemandController extends Controller
                     ->get();
 
         return view('demand.entry', compact('demanditems', 'myClients'));
-        // return view('demand.entry', compact('dynamicitems', 'myClients'));
     }
 
     public function entryDone(Request $request)
@@ -61,25 +60,13 @@ class DemandController extends Controller
                     'client_id'=> $request->client_id,
                 ]);
 
-
                 $company_id = $user->company_id;
-                $myCompanyDynamicItems = CompanyDynamicItem::where('company_id', $company_id)->get();        
-                $where = [
-                    ['company_id', '=', $company_id],
-                ];
-                // $whereNot = [];
-                // foreach($myCompanyDynamicItems as $myCompanyDynamicItem){
-                //     array_push($whereNot, [ 'id', '<>', $myCompanyDynamicItem->dynamicitem->id]);       
-                // } ;
-                // $dynamicitems = DynamicItem::where($where)->where($whereNot)->get();        
 
                 $demanditems = DynamicItemRole::where('dynamic_item_type', 'demands')
                 ->whereHas('dynamicitem', function ($query) use($company_id) {
                     return $query->where('company_id', $company_id);
                 })
                 ->get();                
-
-                // $dynamicitems = DynamicItem::where('company_id', $user->company_id)->get();
                 
                 $validationRule = [];
 
@@ -121,60 +108,6 @@ class DemandController extends Controller
 
                 }
 
-
-                // foreach($dynamicitems as $dynamicitem){
-
-                //     $id = $dynamicitem->id;
-                //     $values = $request->input("values_{$id}");
-
-                //     $rules = [$dynamicitem->required == 1 ? 'required': 'nullable'];
-
-                //     if($dynamicitem->data_type_id == 1){
-                //         $rules[] = 'string';
-                //         $rules[] = 'max:'.'10'; //$dynamicitem->size
-                //     }else if($dynamicitem->data_type_id == 2){
-                //         $rules[] = 'integer';
-                //     }
-
-                //     $validationRule = array_merge(
-                //         $validationRule, [
-                //             "values_{$id}" => $rules,
-                //         ],
-                //     );
-    
-                // }
-
-                // $request->validate($validationRule);
-
-                // foreach($dynamicitems as $dynamicitem){
-
-                //     $id = $dynamicitem->id;
-                //     $values = $request->input("values_{$id}");
-
-                //     $demand_details = DemandDetail::create([
-                //         'values' => $values,
-                //         'dynamic_item_id' => $id,
-                //         'demand_group_id' => $demand->id,
-                //     ]);
-
-                //     // if ($values) {
-                //     //     $demand_details = DemandDetail::create([
-                //     //         'values' => $request->input($id),
-                //     //         'dynamic_item_id' => $id,
-                //     //         'demand_group_id' => $demand->id,
-                //     //     ]);
-                //     // } elseif($values == null && $dynamicitem->required == 1) {
-                //     //     // input空白 && 必須項目
-                //     //     $request->validate([
-                //     //         'values' => 'required',
-                //     //         // 'dynamic_item_id' => 'required | integer | between:0,150',
-                //     //         // 'demand_group_id' => 'required | integer | between:0,150'
-                //     //     ]);
-                //     // } else {
-                //     //     // input空白 && 任意項目 -> 処理しない
-                //     // }
-
-                // }
             });
 
         return redirect()->route('demand.showAll');

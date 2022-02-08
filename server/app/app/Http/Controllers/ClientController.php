@@ -22,8 +22,6 @@ class ClientController extends Controller
     public function entry()
     {
         $user = Auth::user();
-        // $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
-
         $CompanyDynamicItems = DynamicItemRole::where('dynamic_item_type', 'clients')->get();
 
         return view('client.entry', compact('CompanyDynamicItems'));
@@ -41,7 +39,6 @@ class ClientController extends Controller
                     'client_name' => $request->input('client_name'),
                 ]);
 
-                // $CompanyDynamicItems = CompanyDynamicItem::where('company_id', $user->company_id)->get();
                 $CompanyDynamicItems = DynamicItemRole::where('dynamic_item_type', 'clients')->get();
 
                 foreach($CompanyDynamicItems as $CompanyDynamicItem){
@@ -101,11 +98,6 @@ class ClientController extends Controller
                 'data_type_id' => $data_type_id,
                 'company_id' => $user->company_id,
             ]);
-
-            // CompanyDynamicItem::create([
-            //     'company_id' => $user->company_id,
-            //     'dynamic_item_id' => $dynamicitem->id,
-            // ]);          
 
             DynamicItemRole::create([
                 'dynamic_item_id' => $dynamicitem->id,
