@@ -69,7 +69,7 @@ class DemandController extends Controller
                 
                 $validationRule = [];
 
-
+                
                 foreach($demanditems as $demanditem){
 
                     $id = $demanditem->dynamic_item_id;
