@@ -21,10 +21,6 @@
                     {{ Auth::user()->name }}
                 </a>
 
-                <li>
-                  adminのnavigation
-                </li>
-
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li>
