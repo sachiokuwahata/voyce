@@ -26,7 +26,13 @@
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+            {{--    {{ $slot }}  --}}
+        </div>
+
+        <div class="main">
+                <div class="container container-m">
+                    @yield('content')
+                </div>
         </div>
     </body>
 </html>
