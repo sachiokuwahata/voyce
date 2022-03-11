@@ -1,8 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-
-<div>
+<x-app-layout>
+<x-slot name="slot">
+        <div>
                 <form method="POST" action="{{ route('demand.entryDone') }}">
                 @csrf
                 
@@ -54,11 +52,10 @@
                         保存する
                     </button>
                 </form>
-            </div>
+        </div>
 
             @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
             @endforeach
-
-
-@endsection
+</x-slot>
+</x-app-layout>

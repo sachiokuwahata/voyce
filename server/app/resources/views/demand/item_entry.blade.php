@@ -1,7 +1,5 @@
-
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+<x-slot name="slot">
 
 <div>
 
@@ -66,5 +64,6 @@
                 </form>
             </div>
 
-@endsection
+</x-slot>
+</x-app-layout>
 

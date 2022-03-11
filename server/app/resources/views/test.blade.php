@@ -1,7 +1,5 @@
-
-@extends('layouts.guest')
-
-@section('content')
+<x-guest-layout>
+<x-slot name="slot">
     <p>このページはインデックスページです。</p>
 
             <div class="h1">
@@ -36,4 +34,5 @@
                 </a>
             </div>
 
-@endsection
+</x-slot>
+</x-guest-layout>

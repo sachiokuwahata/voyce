@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+<x-slot name="slot">
 
             <div>
                 <form method="POST" action="{{ route('client.entryDone') }}">
@@ -56,5 +55,6 @@
                 <li>{{$error}}</li>
             @endforeach
 
+    </x-slot>
+</x-app-layout>
 
-@endsection

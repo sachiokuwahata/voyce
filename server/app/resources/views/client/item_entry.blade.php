@@ -1,7 +1,5 @@
-
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+<x-slot name="slot">
 
 <div>
                 項目作成
@@ -46,5 +44,5 @@
                 </form>
             </div>
 
-@endsection
-
+    </x-slot>
+</x-app-layout>

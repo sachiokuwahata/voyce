@@ -42,7 +42,10 @@
 
             <!-- Page Content -->
             <main>
-            {{--    {{ $slot }}  --}}
+
+                <div class="container container-m">
+                    {{ $slot }}
+                </div>                
 
                 <div class="container container-m">
                     @yield('content')
