@@ -20,14 +20,15 @@
                 <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
+
                 <li>
-                  通常のnavigation
+                  adminのnavigation
                 </li>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li>
-                        <form class="dropdown-item" method="POST" action="{{ route('logout') }}">
+                        <form class="dropdown-item" method="POST" action="{{ route('admin.logout') }}">
                                     @csrf
 
                                     <x-dropdown-link :href="route('logout')"

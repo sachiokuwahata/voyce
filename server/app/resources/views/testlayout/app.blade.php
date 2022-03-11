@@ -26,7 +26,12 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('testlayout.navigation')
+
+            @if(auth('admin')->user())
+                @include('testlayout.admin-navigation')
+            @else
+                @include('testlayout.navigation')
+            @endif                
 
             <!-- Page Heading -->
             <header class="bg-white shadow">
