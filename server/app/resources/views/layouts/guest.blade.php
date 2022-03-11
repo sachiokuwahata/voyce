@@ -26,8 +26,12 @@
     </head>
     <body>
 
+        @include('layouts.guest-navigation')
+
         <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }} 
+            <div class="container container-m">            
+                {{ $slot }} 
+            </div>
         </div>
 
         <div class="main">
