@@ -27,6 +27,19 @@
                     You're logged in!
                 </div>
             </div>
+
+            <div class="h3">
+                <a href="{{ route('admin.companyEntry') }}">
+                    企業追加
+                </a>
+            </div>
+
+            <div class="h3">
+                <a href="{{ route('register') }}">
+                    ユーザー追加
+                </a>
+            </div>
+
         </div>
     </div>
 </x-app-layout>

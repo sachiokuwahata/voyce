@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\AdminController;
 
 
 /*
@@ -22,10 +23,6 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -35,31 +32,13 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin'])->name('dashboard');
 
-Route::prefix('demand')->name('demand.')->middleware('auth:admin')->group(function (){
-  
-    Route::get('entry', [DemandController::class, 'entry'])->name('entry');
-    Route::post('entryDone', [DemandController::class, 'entryDone'])->name('entryDone');
 
-    Route::get('item/entry', [DemandController::class, 'itemEntry'])->name('item.entry');
-    Route::post('item/entryDone', [DemandController::class, 'itemEntryDone'])->name('item.entryDone');
-  
-    Route::get('showAll', [DemandController::class, 'showAll'])->name('showAll');
-    Route::get('showItemAll', [DemandController::class, 'showItemAll'])->name('showItemAll');
-   
- });
-
- Route::prefix('client')->name('client.')->middleware('auth:admin')->group(function (){
-
-    Route::get('entry', [ClientController::class, 'entry'])->name('entry');
-    Route::post('entryDone', [ClientController::class, 'entryDone'])->name('entryDone');
-
-    Route::get('item/entry', [ClientController::class, 'itemEntry'])->name('item.entry');
-    Route::post('item/entryDone', [ClientController::class, 'itemEntryDone'])->name('item.entryDone');
-
+Route::middleware('auth:admin')->group(function (){
+    Route::get('company/entry/register', [AdminController::class, 'companyEntry'])->name('companyEntry');
+    Route::post('company/register', [AdminController::class, 'companyRegister'])->name('companyRegister');
  });
 
 
- 
  Route::get('/register', [RegisteredUserController::class, 'create'])
                  ->middleware('guest')
                  ->name('register');
